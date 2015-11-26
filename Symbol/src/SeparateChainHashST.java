@@ -16,11 +16,13 @@ public class SeparateChainHashST<K, V> implements SymbolTable<K, V> {
 
 	@Override
 	public void put(K key, V value) {
+		
 		SequentialSearchST<K, V> s = (SequentialSearchST<K, V>) hashTable[(key.hashCode() % hashTable.length)];
+		if(!s.contains(key)){
+			count++;			
+		}
 		s.put(key, value);
-		count++;
-		Integer i = 1;
-		i.hashCode();
+
 	}
 
 	@Override
@@ -33,6 +35,7 @@ public class SeparateChainHashST<K, V> implements SymbolTable<K, V> {
 	public void delete(K key) {
 		SequentialSearchST<K, V> s = (SequentialSearchST<K, V>) hashTable[(key.hashCode() % hashTable.length)];
 		s.delete(key);
+		count--;
 	}
 
 	@Override
@@ -56,7 +59,10 @@ public class SeparateChainHashST<K, V> implements SymbolTable<K, V> {
 		
 		class Itable implements Iterable<K>{
 
-			ArrayList<K> allKeys = new ArrayList<K>();
+			ArrayList<K> allKeys;
+			Itable(){
+				allKeys = new ArrayList<K>();
+			}
 			@Override
 			public Iterator<K> iterator() {
 				for (Object st : hashTable) {
@@ -67,19 +73,20 @@ public class SeparateChainHashST<K, V> implements SymbolTable<K, V> {
 						}
 					}
 				}
-				return new It();
+				return new It(allKeys);
 			}
 			class It implements Iterator<K>{
-				Iterator<K> iter = allKeys.iterator();
+				Iterator<K> iter;
+				public It(ArrayList<K> k){
+					iter = k.iterator();
+				}
 				@Override
 				public boolean hasNext() {
-					// TODO Auto-generated method stub
 					return iter.hasNext();
 				}
 
 				@Override
 				public K next() {
-					// TODO Auto-generated method stub
 					return  iter.next();
 				}
 				

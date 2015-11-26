@@ -2,10 +2,10 @@ import java.util.Iterator;
 
 public class SequentialSearchST<K,V>  {
 	
-	private Node first;
+	 Node first;
 	private int sz;
 
-	private class Node {
+	class Node {
 		K key;
 		V value;
 		Node next;
@@ -74,23 +74,10 @@ public class SequentialSearchST<K,V>  {
 	/**
 	 * deletes the key-value pair associated with the key from the symbol table
 	 * @param key
-	 * @throws NullPointerException if the key is null
+	 * @throws NullPointer!Exception if the key is null
 	 */
 	public void delete(K key) {
-//		first = delete(first,key);	
-		
-		for(Node n = first,  n2 = null; n !=null;n2=n, n=n.next){
-			if(n2==null){
-				first = n.next;
-				sz--;
-				break;
-						
-			}
-			if(n.key==key){
-				sz--;
-				n2.next = n.next;
-			}
-		}
+		first = delete(first,key);	
 	}
 
 	/**
