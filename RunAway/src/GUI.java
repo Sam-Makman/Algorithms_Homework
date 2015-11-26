@@ -14,6 +14,7 @@ public class GUI extends JFrame{
 	
 private static final int WIDTH = 420;
 private static final int HEIGHT = 600;
+private Direction playerMovement;
 JFrame frame;
 DrawPanel panel;
 Board board;
@@ -47,22 +48,30 @@ private DrawPanel createPanel(){
 //	paintable.add(panel);
 	return panel;
 }
+
+public Direction getPlayerMovement(){
+	return playerMovement;
+}
 class Keys implements KeyListener{
 	
 	@Override
 	public void keyTyped(KeyEvent e) {
 		if(e.getKeyChar()=='w'){
-			board.movePlayer(0, 1);
+//			board.movePlayer(Direction.NORTH);
+			playerMovement= Direction.NORTH;
 		}
 		else if(e.getKeyChar()=='s'){
-			board.movePlayer(0, -1);
+//			board.movePlayer(Direction.SOUTH );
+			playerMovement= Direction.SOUTH;
 		}else if(e.getKeyChar()=='a'){
-			board.movePlayer(-1, 0);
+//			board.movePlayer(Direction.WEST);
+			playerMovement= Direction.WEST;
 		}else if(e.getKeyChar()=='d'){
-			board.movePlayer(1, 0);
+//			board.movePlayer(Direction.EAST);
+			playerMovement= Direction.EAST;
 		}else if(e.getKeyChar()=='r'){
 			board.clear();
-			board.initBoardd();
+			board.initBoard();
 		}
 		frame.repaint();
 	}

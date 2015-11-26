@@ -33,5 +33,7 @@ public class DrawPanel extends JComponent{
 		}
 		g.setColor((Color.YELLOW));
 		g.fillRect(board.getPlayer().getX()*20, board.getPlayer().getY()*20, WIDTH, HEIGHT);
+		g.setColor((Color.ORANGE));
+		g.fillRect(board.getGhost().getX()*20, board.getGhost().getY()*20, WIDTH, HEIGHT);
 	}
 }

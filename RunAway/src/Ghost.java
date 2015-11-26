@@ -14,7 +14,7 @@ public class Ghost {
 		 return y;
 	 }
 	public void move(Player player, Board board) {
-		// TODO Auto-generated method stub
+		
 		
 	}
 }

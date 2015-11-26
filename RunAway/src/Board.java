@@ -15,11 +15,12 @@ public class Board {
 		
 	
 	}
-		public void initBoardd(){
+		public void initBoard(){
 			int[] start = placeCage();
 			
 			placeSector(start[0], start[1]-1);
 			player.setLocation(start[0]*3 + 1, (start[1]*3));
+			ghost.setLocation(start[0]*3 + 1, start[1]*3 + 1);
 			for (int i = 0; i < WIDTH; i++) {
 			for (int j = 0; j < HEIGHT; j++) {
 				if(sectors[i][j] == null){
@@ -158,8 +159,8 @@ public class Board {
 		return ghost;
 	}
 	
-	public void movePlayer(int x, int y){
-		player.move(x,y,this);
+	public void movePlayer(Direction d){
+		player.move(d,this);
 	}
 	
 	public void moveGhost(){
