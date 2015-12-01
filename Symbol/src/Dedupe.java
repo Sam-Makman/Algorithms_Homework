@@ -7,18 +7,14 @@ public class Dedupe {
 		int n = scan.nextInt();
 		double percent = scan.nextDouble();
 		Post [] posts = generatePostsWithDupes(n, percent);
-//		shuffle(posts);
 		SeparateChainHashST<Post, Post> hashTable = new SeparateChainHashST<Post, Post>(n);
+		shuffle(posts);
 		for(Post p : posts){
-			System.out.println(p);
 			hashTable.put(p, p);
 		}
-		System.out.println("hashtable size = " + hashTable.size());
 		for(Post key : hashTable.keys()){
-			System.out.println(key.hashCode());
+			System.out.println(key.hashCode() + ", " + key.toString());
 		}
-		System.out.println("Done");
-		
 	}
 	
 	
@@ -36,14 +32,12 @@ public class Dedupe {
 		Post [] posts = new Post[N];
 		int i = 0;
 		if(j==0){
-			System.out.println("percent is 1");
 			posts[0] = new Post();
 			for(int m = 1; m< posts.length; m++){
 				posts[m] = (Post) posts[0].clone();
 			}
 					
 		}else{
-			System.out.println("percent is not 1");
 		for(i=0; i < j ;i++){
 			posts[i] = new Post();
 		}

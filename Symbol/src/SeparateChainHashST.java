@@ -3,7 +3,7 @@ import java.util.Iterator;
 
 public class SeparateChainHashST<K, V> implements SymbolTable<K, V> {
 
-	 Object[] hashTable;
+	Object[] hashTable;
 	private int count;
 
 	public SeparateChainHashST(int n) {
@@ -65,12 +65,10 @@ public class SeparateChainHashST<K, V> implements SymbolTable<K, V> {
 			}
 			@Override
 			public Iterator<K> iterator() {
-				for (Object st : hashTable) {
-					SequentialSearchST<K, V> s = (SequentialSearchST<K, V>) st;
-					if (s != null) {
-						for (K key : s.keys()) {	
-							allKeys.add(key);
-						}
+				for(int i = 0; i < hashTable.length; i++){
+					SequentialSearchST<K, V> s = (SequentialSearchST<K, V>) hashTable[i];
+					for(SequentialSearchST.Node n = s.first; n != null; n = n.next){
+						allKeys.add((K) n.key);
 					}
 				}
 				return new It(allKeys);
@@ -96,6 +94,16 @@ public class SeparateChainHashST<K, V> implements SymbolTable<K, V> {
 		return new Itable();
 		
 		
+	}
+	
+	public void print(){
+		for(int i = 0; i < hashTable.length; i++){
+			SequentialSearchST<K, V> s = (SequentialSearchST<K, V>) hashTable[i];
+			System.out.println("Table number " + i + "  ------------------------------");
+			for(SequentialSearchST.Node n = s.first; n != null; n = n.next){
+				System.out.println(n.key);
+			}
+		}
 	}
 
 }
