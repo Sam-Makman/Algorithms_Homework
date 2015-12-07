@@ -53,17 +53,19 @@ public class Board {
 	 * 
 	 */
 	public void placeSector(int x, int y)  {
-		try {
+		if(sectors[x][y]!=null)return;
+		
+		try {//pause then repaint 
 			TimeUnit.MILLISECONDS.sleep(100);
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
 		g.repaint();
-		if(sectors[x][y]!=null)return;
+		
 		Random r = new Random();
 		int j;
-		for(j = 0; j<100; j++) {
-			sectors[x][y] = new Sector(r.nextInt(6)%4);
+		for(j = 0; j<8; j++) {
+			sectors[x][y] = new Sector((r.nextInt(6)+j)%4);
 			for(int i = 0; i<4;i++){
 				if(!validSectorPlacement(x, y)){
 					sectors[x][y].rotate();
@@ -73,7 +75,7 @@ public class Board {
 			break;
 			}
 		}
-		if(j>90){
+		if(!validSectorPlacement(x, y)){
 			System.out.println("No valid placement");
 			sectors[x][y] = new Sector(4);
 			return;
