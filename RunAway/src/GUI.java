@@ -1,12 +1,14 @@
 import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 import java.util.ArrayList;
 
 import javax.swing.JComponent;
 import javax.swing.JFrame;
 
-public class GUI extends JFrame{
+public class GUI extends JFrame implements PropertyChangeListener{
 /**
 	 * 
 	 */
@@ -20,13 +22,13 @@ DrawPanel panel;
 Board board;
 ArrayList<JComponent> paintable;
 public GUI(Board board){
-	this.board=board;
 	frame = createFrame();
 	frame.addKeyListener(new Keys());
 	paintable = new ArrayList<JComponent>();
 	frame.getContentPane().add(new DrawPanel(board));
 	frame.getContentPane().addKeyListener(new Keys());
 	frame.setVisible(true);
+	this.board= board;
 }
 
 public void paint(Graphics g){
@@ -70,8 +72,8 @@ class Keys implements KeyListener{
 //			board.movePlayer(Direction.EAST);
 			playerMovement= Direction.EAST;
 		}else if(e.getKeyChar()=='r'){
-			board.clear();
-			board.initBoard();
+//			board.clear();
+//			board.initBoard();
 		}
 		frame.repaint();
 	}
@@ -85,6 +87,10 @@ class Keys implements KeyListener{
 	public void keyReleased(KeyEvent e) {
 	}
 	
+}
+@Override
+public void propertyChange(PropertyChangeEvent evt) {
+	repaint();
 }
 
 

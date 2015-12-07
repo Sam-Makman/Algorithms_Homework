@@ -1,5 +1,5 @@
 
-public class Ghost {
+public abstract class Ghost {
 	private int x, y;
 	
 	public void setLocation(int x, int y){
@@ -13,8 +13,7 @@ public class Ghost {
 	 public int getY(){
 		 return y;
 	 }
-	public void move(Player player, Board board) {
-		
-		
-	}
+	public abstract void move(Player player, Board board);
+	
 }
+
