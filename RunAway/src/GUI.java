@@ -59,17 +59,13 @@ class Keys implements KeyListener{
 	@Override
 	public void keyTyped(KeyEvent e) {
 		if(e.getKeyChar()=='w'){
-//			board.movePlayer(Direction.NORTH);
 			playerMovement= Direction.NORTH;
 		}
 		else if(e.getKeyChar()=='s'){
-//			board.movePlayer(Direction.SOUTH );
 			playerMovement= Direction.SOUTH;
 		}else if(e.getKeyChar()=='a'){
-//			board.movePlayer(Direction.WEST);
 			playerMovement= Direction.WEST;
 		}else if(e.getKeyChar()=='d'){
-//			board.movePlayer(Direction.EAST);
 			playerMovement= Direction.EAST;
 		}else if(e.getKeyChar()=='r'){
 //			board.clear();

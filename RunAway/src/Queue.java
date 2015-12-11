@@ -1,12 +1,13 @@
 
 public class Queue<V> {
 	private Node head,tail;
-
+	private int size;
 	public Queue(){
 		
 	}
 	
 	public void enqueue(V val){
+		size++;
 		Node n = new Node();
 		n.val=val;
 		if(tail == null){
@@ -24,6 +25,7 @@ public class Queue<V> {
 		if(head == null){
 			return null;
 		}
+		size--;
 		V temp = head.val;
 		head=head.next;
 		return temp;
@@ -32,5 +34,8 @@ public class Queue<V> {
 	private class Node{
 		V val;
 		Node next;		
+	}
+	public int size(){
+		return size;
 	}
 }

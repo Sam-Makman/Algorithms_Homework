@@ -33,10 +33,6 @@ public class GreenGhost extends Ghost {
 		}
 
 		if (!searched[n.x][n.y]) {
-			if (b.getTiles()[(n.x + 1) % width][n.y] == Tile.HALL
-					|| b.getTiles()[(n.x + 1) % width][n.y] == Tile.CAGE) {
-				s.push(new Node((n.x + 1) % width, n.y, n));
-			}
 			if (b.getTiles()[n.x][(n.y + 1) % height] == Tile.HALL
 					|| b.getTiles()[n.x][(n.y + 1) % height] == Tile.CAGE) {
 				s.push(new Node(n.x, (n.y + 1) % height, n));
@@ -48,6 +44,10 @@ public class GreenGhost extends Ghost {
 			if (b.getTiles()[n.x][(n.y - 1 + height) % height] == Tile.HALL
 					|| b.getTiles()[n.x][(n.y - 1 + height) % height] == Tile.CAGE) {
 				s.push(new Node(n.x, (n.y - 1 + height) % height, n));
+			}
+			if (b.getTiles()[(n.x + 1) % width][n.y] == Tile.HALL
+					|| b.getTiles()[(n.x + 1) % width][n.y] == Tile.CAGE) {
+				s.push(new Node((n.x + 1) % width, n.y, n));
 			}
 			searched[n.x][n.y] = true;
 		}
